@@ -13,7 +13,8 @@ const QueriesList = ({ data }) => {
                 style={{ textDecoration: "none", color: "black" }}
                 to={`/${query.id}`}
               >
-                <h3>{`${query.name}`}</h3>
+                <h3>{`${query.name}`}</h3>  
+                <h3>{`${query.questionList[0].text}`}</h3>
               </Link>
             </div>
           ))}
