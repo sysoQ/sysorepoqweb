@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"   
 import { AgGridReact } from 'ag-grid-react'; 
-import IconButton from '@material-ui/core/IconButton'; 
-import SnackBar from '@material-ui/core/SnackBar'; 
+import { Iconbutton, Snackbar as SnackBar } from '@material-ui/core';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import QuestionsByQuery from "./QuestionsByQuery"
