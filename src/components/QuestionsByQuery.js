@@ -17,9 +17,12 @@ const QuestionsByQuery = (props) => {
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState({
     questionList: [],
-  });
+  }); 
   const [listItems, setItems] = React.useState([]);
-  const { id } = useParams();
+  const { id } = useParams(); 
+  const [answer, setAnswer] = React.useState({
+    context: ''
+  });
 
   useEffect(() => {
     getQuery(id);
@@ -42,7 +45,26 @@ const QuestionsByQuery = (props) => {
    const getQuery = (id) => {
     const element = props.queries.find((q) => q.id == id);
     setQuery(element)
-  };
+  }; 
+
+  const inputChanged = (event) => {
+    setAnswer({...answer, [event.target.name]: event.target.value});
+  } 
+
+  const handleSave = () => {
+    addAnswer(answer);
+    //setOpen(false);
+  } 
+
+  const addAnswer = (newA) => { 
+    fetch('https://sysoquery.herokuapp.com/queries',  
+    {
+        method: 'POST', 
+        body: JSON.stringify(newA), 
+        headers: { 'Content-type' : 'application/json' } 
+    }) 
+    .catch(err => console.error(err))
+}  
 
   return (
     <div>
@@ -51,8 +73,18 @@ const QuestionsByQuery = (props) => {
        <TextField
        id="filled-full-width"
        style={{ margin: 80, width: 300 }}
-       name="questions"
-     /></div>
+       name="questions" 
+       margin="dense"
+       label="Vastaus"
+       name="brand"
+       value={d.answers.content}
+       onChange={inputChanged}
+       fullWidth
+     />
+     <Button onClick={handleSave} color="primary">
+            Tallenna vastaus
+          </Button>
+     </div>
       )}
   
           <Link to={"/"}>
