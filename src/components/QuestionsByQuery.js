@@ -19,17 +19,18 @@ const QuestionsByQuery = (props) => {
   const [query, setQuery] = React.useState({
     questionList: [],
   }); 
-  const [listItems, setItems] = React.useState([]);
+  //const [listItems, setItems] = React.useState([]);
   const { id } = useParams(); 
   const [answer, setAnswer] = React.useState({
     content: ''
-  });
+  }); 
+  const [list, setList] = React.useState([]);
 
   useEffect(() => {
     getQuery(id);
   }, []);
 
-  const handleClickOpen = () => {
+  /*const handleClickOpen = () => {
     setOpen(true);
   };
 
@@ -37,7 +38,7 @@ const QuestionsByQuery = (props) => {
     setOpen(false);
   };
 
-  /* const handleQuestions = () => { 
+   const handleQuestions = () => { 
     const items = props.query.map((d) => <li key={d.text}></li>);
     setItems(items); 
   };*/
@@ -53,25 +54,28 @@ const QuestionsByQuery = (props) => {
   } 
 
   const handleSave = () => { 
-
+    
     const newAnswer = { 
       ...answer, content: answer.content, 
       question: query.questionList[0].id,
-      };
-    console.log(props);
+      }; 
+    //setList(newAnswer);
+    console.log(newAnswer); 
+    console.log(list);
     addAnswer(newAnswer);  
-    console.log(newAnswer);
+    //console.log(list);
     console.log("seivasin");
     //setOpen(false); 
-    handleClose();
+    
   } 
 
-  const addAnswer = (newA) => { 
+  const addAnswer = (newAnswer) => { 
     console.log("menin fetchiin");
-    fetch('https://sysoquery.herokuapp.com/answers',  
+    fetch('https://sysoquery.herokuapp.com/answer',  
     {
         method: 'POST', 
-        body: JSON.stringify(newA), 
+        body: JSON.stringify(newAnswer),   
+        //body: '{"content": "Käyn juuuuuu","question": {"id":3}}',   
         headers: { 'Content-type' : 'application/json' }  
         
     })  
