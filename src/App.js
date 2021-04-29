@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import QueriesList from "./components/QueriesList";
 import QuestionsByQuery from "./components/QuestionsByQuery";
 import "./App.css";
+import AnswersByQuery from "./components/AnswersByQuery"
 
 const App = () => {
   const [queries, setQueries] = useState([]);
@@ -36,6 +37,9 @@ const App = () => {
           </Route>
           <Route path="/queries/:id">
             <QuestionsByQuery queries={queries} />
+          </Route> 
+          <Route path="/question/:id">
+            <AnswersByQuery queries={queries} />
           </Route>
         </Switch>
       </div>

@@ -33,6 +33,20 @@ const QueriesList = (props) => {
         </Link>  
       ), 
 
+    },  
+
+    {
+      headerName: "Show answers",
+      field: "id",
+      width: 200,
+      cellRendererFramework: (params) => (
+        <Link to={"/question/" + params.value}>
+          <Button link={params.value} query={params.data} color="primary">
+            Push 
+          </Button> 
+        </Link>  
+      ), 
+
     }, 
     
   ]; 
