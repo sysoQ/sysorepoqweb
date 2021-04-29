@@ -53,12 +53,23 @@ const QuestionsByQuery = (props) => {
     setAnswer({...answer, [event.target.name]: event.target.value});
   } 
 
-  const handleSave = () => { 
-    
+  // tallennusbuttonin click-funktio, index on vastattavan kysymyksen paikka kysymyslistassa
+  const handleSave = (index) => { 
+
+    // tehdään tallennettava objekti json-muotoon
+    /* vastauksen backendissä oletettu formaatti:
+      {
+        "content": "Käyn osa-aikaisesti", 
+        "question": {
+          "id":3
+        }
+      }
+    */
     const newAnswer = { 
       ...answer, content: answer.content, 
-      question: query.questionList[0].id,
+      question: {id: query.questionList[index].id}
       }; 
+    
     //setList(newAnswer);
     console.log(newAnswer); 
     console.log(list);
@@ -85,7 +96,7 @@ const QuestionsByQuery = (props) => {
 
   return (
     <div>
-      {query.questionList.map((d) => 
+      {query.questionList.map((d, index) => 
       <div><h2>{d.text}</h2>
        <TextField
        id="filled-full-width"
@@ -98,7 +109,7 @@ const QuestionsByQuery = (props) => {
        onChange={inputChanged}
        fullWidth
      />
-     <Button onClick={handleSave} color="primary">
+     <Button onClick={() => handleSave(index)} color="primary">
             Tallenna vastaus
           </Button>
      </div>
