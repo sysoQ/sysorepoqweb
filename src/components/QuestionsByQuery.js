@@ -12,6 +12,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import ListIcon from "@material-ui/icons/List";
 import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
+import { PanoramaSharp } from "@material-ui/icons";
 
 const QuestionsByQuery = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -21,7 +22,7 @@ const QuestionsByQuery = (props) => {
   const [listItems, setItems] = React.useState([]);
   const { id } = useParams(); 
   const [answer, setAnswer] = React.useState({
-    context: ''
+    content: ''
   });
 
   useEffect(() => {
@@ -51,18 +52,30 @@ const QuestionsByQuery = (props) => {
     setAnswer({...answer, [event.target.name]: event.target.value});
   } 
 
-  const handleSave = () => {
-    addAnswer(answer);
-    //setOpen(false);
+  const handleSave = () => { 
+
+    const newAnswer = { 
+      ...answer, content: answer.content, 
+      question: props,
+      };
+    console.log(props);
+    addAnswer(newAnswer);  
+    console.log(newAnswer);
+    console.log("seivasin");
+    //setOpen(false); 
+    handleClose();
   } 
 
   const addAnswer = (newA) => { 
-    fetch('https://sysoquery.herokuapp.com/queries',  
+    console.log("menin fetchiin");
+    fetch('https://sysoquery.herokuapp.com/answers',  
     {
         method: 'POST', 
         body: JSON.stringify(newA), 
-        headers: { 'Content-type' : 'application/json' } 
-    }) 
+        headers: { 'Content-type' : 'application/json' }  
+        
+    })  
+    
     .catch(err => console.error(err))
 }  
 
@@ -76,7 +89,7 @@ const QuestionsByQuery = (props) => {
        name="questions" 
        margin="dense"
        label="Vastaus"
-       name="brand"
+       name="content"
        value={d.answers.content}
        onChange={inputChanged}
        fullWidth

@@ -28,12 +28,15 @@ const QueriesList = (props) => {
       cellRendererFramework: (params) => (
         <Link to={"/queries/" + params.value}>
           <Button link={params.value} query={params.data} color="primary">
-            Click
-          </Button>
-        </Link>
-      ),
-    },
-  ];
+            Click {params.value} 
+          </Button> 
+        </Link>  
+      ), 
+
+    }, 
+    
+  ]; 
+  
   return (
     <div
       className="ag-theme-material"
