@@ -56,7 +56,7 @@ const QuestionsByQuery = (props) => {
 
     const newAnswer = { 
       ...answer, content: answer.content, 
-      question: props,
+      question: query.questionList[0].id,
       };
     console.log(props);
     addAnswer(newAnswer);  
