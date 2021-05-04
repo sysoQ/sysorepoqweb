@@ -12,7 +12,16 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import ListIcon from "@material-ui/icons/List";
 import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
-import { PanoramaSharp } from "@material-ui/icons";
+import { PanoramaSharp } from "@material-ui/icons"; 
+import Container from '@material-ui/core/Container';  
+import SaveIcon from '@material-ui/icons/Save'; 
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 const QuestionsByQuery = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -24,7 +33,10 @@ const QuestionsByQuery = (props) => {
   const [answer, setAnswer] = React.useState({
     content: ''
   }); 
-  const [list, setList] = React.useState([]);
+  const [list, setList] = React.useState([]); 
+  const classes = useStyles(); 
+
+  
 
   useEffect(() => {
     getQuery(id);
@@ -95,12 +107,14 @@ const QuestionsByQuery = (props) => {
 }  
 
   return (
-    <div>
-      {query.questionList.map((d, index) => 
-      <div><h2>{d.text}</h2>
+    <div> 
+      <Container maxWidth="sm" style={{ backgroundColor: '#cfe8fc' }}> 
+      {query.questionList.map((d, index) =>  
+      <div> 
+        <h2><p>""""""""""""""""""""""""""""""""""""""""""""""</p> {d.text}</h2>
        <TextField
        id="filled-full-width"
-       style={{ margin: 80, width: 300 }}
+       style={{ margin: 80, width: 350 }}
        name="questions" 
        margin="dense"
        label="Vastaus"
@@ -108,16 +122,20 @@ const QuestionsByQuery = (props) => {
        value={d.answers.content}
        onChange={inputChanged}
        fullWidth
-     />
-     <Button onClick={() => handleSave(index)} color="primary">
-            Tallenna vastaus
+     /> 
+     <Button onClick={() => handleSave(index)} variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        startIcon={<SaveIcon />}>
+            Tallenna
           </Button>
      </div>
       )}
-  
+    </Container>
           <Link to={"/"}>
           <Button color="primary">
-            Cancel
+            Back to frontpage
           </Button>
         </Link>
 
