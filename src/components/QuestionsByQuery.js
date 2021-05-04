@@ -128,7 +128,7 @@ const QuestionsByQuery = (props) => {
         size="small"
         className={classes.button}
         startIcon={<SaveIcon />}>
-            Tallenna
+            Tallenna tämä
           </Button>
      </div>
       )}
