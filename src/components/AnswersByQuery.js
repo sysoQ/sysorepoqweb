@@ -11,42 +11,103 @@ import Box from "@material-ui/core/Box";
 const AnswersByQuery = (props) => { 
     const [query, setQuery] = React.useState({
         questionList: [],
-      });  
-      const { id } = useParams(); 
+      });   
 
-      useEffect(() => {
+    const { id } = useParams(); 
+
+    useEffect(() => {
         getQuery(id);
-      }, []); 
+    }, []); 
 
-      const getQuery = (id) => {
+    //Finds the query by its id
+    const getQuery = (id) => {
         const element = props.queries.find((q) => q.id == id);
         setQuery(element)
-      }; 
+    }; 
 
-return (
-    <div>  
-         <Link to={"/"}>
-         <Box textAlign='center'>
-          <Button variant="outlined" color="secondary">
-            Back to frontpage
-          </Button> 
-          </Box>
-        </Link>  
-        <Container maxWidth="sm" style={{ backgroundColor: '#cfe8fc' }}> 
-            {query.questionList.map((d, index) => 
-            <div><h2>{d.text}</h2> 
-                {d.answers.map((a, index) =>   
+    //set different lay outs for different queries
+    switch(query.id) { 
+        case 1:
+          return (
+            <div>  
+                <Box textAlign='center'>
+                  <Button variant="outlined" color="primary" href="/">
+                    Back to frontpage
+                  </Button> 
+                </Box>
+              <Container maxWidth="md" style={{ backgroundImage: "url(" + "https://cdn.pixabay.com/photo/2017/11/18/09/42/concept-2959615_960_720.jpg" + ")",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat' }}>  
+                <Container maxWidth="sm" style={{backgroundColor: "white", opacity: '90%' }}>
+                {query.questionList.map((d, index) => 
+                  <div><h2>{d.text}</h2> 
+                    {d.answers.map((a, index) =>   
+                      <div> {index +1}. {a.content}  
+                        <p></p>
+                      </div> 
+                    )} 
+                  </div>
+                )}   
+                </Container>
+              </Container>
+           </div>
+          )  
+
+          case 2:
+          return (
+            <div>  
+              <Box textAlign='center'>
+                  <Button variant="outlined" color="primary" href="/">
+                    Back to frontpage
+                  </Button> 
+                </Box>
+              <Container maxWidth="md" style={{ backgroundImage: "url(" + "https://cdn.pixabay.com/photo/2018/06/07/16/38/blueberry-3460421_960_720.jpg" + ")",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat' }}>  
+                <Container maxWidth="sm" style={{backgroundColor: "white", opacity: '70%' }}>
+                 {query.questionList.map((d, index) => 
+                  <div><h2>{d.text}</h2> 
+                    {d.answers.map((a, index) =>   
+                      <div> {index +1}. {a.content}  
+                        <p></p>
+                      </div> 
+                    )} 
+                  </div>
+                )}   
+                </Container>
+              </Container>
+           </div>
+          ) 
+
+          default: 
+          return (
+            <div>  
+            <Box textAlign='center'>
+                  <Button variant="outlined" color="primary" href="/">
+                    Back to frontpage
+                  </Button> 
+                </Box>
+            <Container maxWidth="md" style={{ backgroundImage: "url(" + "https://cdn.pixabay.com/photo/2016/11/08/04/49/jungle-1807476_960_720.jpg" + ")",
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat' }}>  
+              <Container maxWidth="sm" style={{backgroundColor: "white", opacity: '70%' }}>
+               {query.questionList.map((d, index) => 
+                <div><h2>{d.text}</h2> 
+                  {d.answers.map((a, index) =>   
                     <div> {index +1}. {a.content}  
-                    <p></p>
+                      <p></p>
                     </div> 
-                )} 
-                <p>±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±</p>
-            </div>
-            )}  
-        </Container>
-    </div>
-)
-
+                  )} 
+                </div>
+              )}   
+              </Container>
+            </Container>
+         </div>
+          )
+       }
 } 
 
 export default AnswersByQuery; 

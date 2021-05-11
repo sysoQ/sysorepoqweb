@@ -2,33 +2,41 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Snackbar, Typography } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
+import Toolbar from "@material-ui/core/Toolbar"; 
+import Container from '@material-ui/core/Container';   
 import QueriesList from "./components/QueriesList";
 import QuestionsByQuery from "./components/QuestionsByQuery";
 import "./App.css";
-import AnswersByQuery from "./components/AnswersByQuery"
+import AnswersByQuery from "./components/AnswersByQuery" 
 
 const App = () => {
-  const [queries, setQueries] = useState([]);
+  const [queries, setQueries] = useState([]); 
+  
 
-  const fetchQueries = () => {
+  const fetchQueries = () => { 
+    
     fetch("https://sysoquery.herokuapp.com/queries")
       .then((response) => response.json())
       .then((response) => setQueries(response))
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
+  useEffect(() => { 
+   
     fetchQueries();
-  }, []);
+  }, []); 
 
-
+  
+  
   return (
-    <Router>
+    <Router> 
       <div>
         <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h5">All Queries</Typography>
+          <Toolbar style={{backgroundImage: "url(" + "https://cdn.pixabay.com/photo/2015/11/19/01/21/texture-1050247_960_720.jpg" + ")",
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat' }}>
+            <Typography variant="h5">KyselyAppis</Typography>
           </Toolbar>
         </AppBar>
         <Switch>
@@ -42,8 +50,12 @@ const App = () => {
             <AnswersByQuery queries={queries} />
           </Route>
         </Switch>
-      </div>
-    </Router>
+        </div> 
+        <div className="footer">
+      <p> ©SysoQ Emmi, Krista, Mirka ja Noora 
+         </p>
+    </div>
+    </Router>  
   );
 };
 

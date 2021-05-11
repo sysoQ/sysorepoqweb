@@ -1,5 +1,16 @@
 .App {
   text-align: center;
+} 
+
+.footer{
+  margin-top: 20rem;
+  padding: 0.001rem;
+  background-color: rgb(211, 231, 136);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  text-align: right;
 }
 
 .App-logo {
@@ -34,5 +45,7 @@
   }
   to {
     transform: rotate(360deg);
-  }
+  } 
+
+  
 }
