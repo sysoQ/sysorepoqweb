@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Snackbar, Typography } from "@material-ui/core";
+import Typography from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar"; 
-import Container from '@material-ui/core/Container';   
 import QueriesList from "./components/QueriesList";
 import QuestionsByQuery from "./components/QuestionsByQuery";
 import "./App.css";
@@ -14,7 +13,6 @@ const App = () => {
   
 
   const fetchQueries = () => { 
-    
     fetch("https://sysoquery.herokuapp.com/queries")
       .then((response) => response.json())
       .then((response) => setQueries(response))
@@ -22,12 +20,9 @@ const App = () => {
   };
 
   useEffect(() => { 
-   
     fetchQueries();
   }, []); 
 
-  
-  
   return (
     <Router> 
       <div>

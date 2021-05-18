@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
 import Container from '@material-ui/core/Container';  
 import SaveIcon from '@material-ui/icons/Save'; 
 import { makeStyles } from '@material-ui/core/styles'; 
@@ -22,78 +21,55 @@ function Alert(props) {
 }
 
 const QuestionsByQuery = (props) => {
-  const [open, setOpen] = React.useState(false); 
-  const [msg, setMsg] = React.useState("");
-  const [query, setQuery] = React.useState({
-    questionList: [],
-  }); 
-  const { id } = useParams(); 
-  const [answer, setAnswer] = React.useState({
+    const [open, setOpen] = React.useState(false); 
+    const [query, setQuery] = React.useState({
+      questionList: [],
+      }); 
+    const { id } = useParams(); 
+    const [answer, setAnswer] = React.useState({
     content: ''
-  }); 
-  const classes = useStyles();  
+      }); 
+    const classes = useStyles();  
   
 
+    useEffect(() => {
+      getQuery(id);
+    }, []);
 
-  useEffect(() => {
-    getQuery(id);
-  }, []);
+    const getQuery = (id) => {
+      const element = props.queries.find((q) => q.id == id);
+      setQuery(element)
+    };  
 
-  /*
-   const handleQuestions = () => { 
-    const items = props.query.map((d) => <li key={d.text}></li>);
-    setItems(items); 
-  };*/
+    const handleClose = () => {
+      setOpen(false);
+    };
 
-   // etsitään yksittäinen query
-   const getQuery = (id) => {
-    const element = props.queries.find((q) => q.id == id);
-    setQuery(element)
-  };  
+    const inputChanged = (event) => {
+      setAnswer({...answer, [event.target.name]: event.target.value}); 
+    } 
 
-  const openSnackBar = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const inputChanged = (event) => {
-    setAnswer({...answer, [event.target.name]: event.target.value}); 
-  } 
-
-  // tallennusbuttonin click-funktio, index on vastattavan kysymyksen paikka kysymyslistassa
-  const handleSave = (index) => {  
-    setOpen(true);
-    // tehdään tallennettava objekti json-muotoon
-    /* vastauksen backendissä oletettu formaatti:
-      {
-        "content": "Käyn osa-aikaisesti", 
-        "question": {
-          "id":3
-        }
-      }*/ 
+    const handleSave = (index) => {  
+      setOpen(true);
+      // makes new object in json format
       const newAnswer = { 
-      ...answer, content: answer.content, 
-      question: {id: query.questionList[index].id}
+        ...answer, content: answer.content, 
+          question: {id: query.questionList[index].id}
       }; 
       addAnswer(newAnswer);  
     } 
 
     //Post new answer to answer endpoint
     const addAnswer = (newAnswer) => { 
-      console.log("menin fetchiin");
       fetch('https://sysoquery.herokuapp.com/answer',  
       {
         method: 'POST', 
         body: JSON.stringify(newAnswer),   
         //newAnswer in JSON: '{"content": "Käyn juu","question": {"id":3}}',   
         headers: { 'Content-type' : 'application/json' }  
-        
-    })  
-    .catch(err => console.error(err))
-    }  
+      })  
+      .catch(err => console.error(err))
+      }  
 
 
     switch(query.id) { 

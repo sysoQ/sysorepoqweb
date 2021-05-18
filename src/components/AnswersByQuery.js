@@ -19,13 +19,12 @@ const AnswersByQuery = (props) => {
         getQuery(id);
     }, []); 
 
-    //Finds the query by its id
     const getQuery = (id) => {
         const element = props.queries.find((q) => q.id == id);
         setQuery(element)
     }; 
 
-    //set different lay outs for different queries
+    //set different background picture for different queries
     switch(query.id) { 
         case 1:
           return (

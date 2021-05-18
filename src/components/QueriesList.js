@@ -14,7 +14,6 @@ const QueriesList = (props) => {
   const [msg, setMsg] = useState("");
   const [open, setOpen] = useState(false);
   
-
   const openSnackBar = () => {
     setOpen(true);
   };
