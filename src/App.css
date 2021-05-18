@@ -6,7 +6,7 @@
   margin-top: 20rem;
   padding: 0.001rem;
   background-color: rgb(211, 231, 136);
-  position: fixed;
+  position: auto;
   bottom: 0;
   left: 0;
   width: 100%; 

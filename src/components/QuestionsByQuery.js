@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
-import { Link } from "react-router-dom";
 import Container from '@material-ui/core/Container';  
 import SaveIcon from '@material-ui/icons/Save'; 
 import { makeStyles } from '@material-ui/core/styles'; 
@@ -32,7 +31,6 @@ const QuestionsByQuery = (props) => {
   const [answer, setAnswer] = React.useState({
     content: ''
   }); 
-  const [list, setList] = React.useState([]); 
   const classes = useStyles();  
   
 
@@ -110,11 +108,12 @@ const QuestionsByQuery = (props) => {
               <Container maxWidth="md" style={{  backgroundImage: "url(" + "https://cdn.pixabay.com/photo/2017/11/18/09/42/concept-2959615_960_720.jpg" + ")",
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat'}}> 
+                backgroundRepeat: 'no-repeat', 
+                }}> 
               {//Loops all the questions from query 
               } 
                 {query.questionList.map((d, index) =>  
-                  <Container maxWidth="sm" style={{backgroundColor: "white", opacity: '90%' }}>
+                  <Container maxWidth="sm" style={{backgroundColor: "white", opacity: '90%'}}>
                   <div> 
                     <h2><p><br></br></p> {d.text}</h2>
                     <TextField
