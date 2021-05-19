@@ -52,7 +52,6 @@ const QueriesList = (props) => {
         </Link>  
       ), 
     }, 
-    
   ]; 
   
   return (
