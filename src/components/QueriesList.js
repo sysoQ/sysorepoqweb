@@ -8,7 +8,8 @@ import QuestionsByQuery from "./QuestionsByQuery";
 import Container from '@material-ui/core/Container';   
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'; 
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline'; 
-import Box from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box'; 
+import ShowChart from "./ShowChart";
 
 const QueriesList = (props) => {
   const [msg, setMsg] = useState("");
@@ -50,7 +51,6 @@ const QueriesList = (props) => {
           </IconButton> 
         </Link>  
       ), 
-
     }, 
     
   ]; 
@@ -62,7 +62,8 @@ const QueriesList = (props) => {
       backgroundRepeat: 'no-repeat' 
       }}> 
       <div className="ag-theme-material" style={{ height: 300, width: "80%", margin: "auto" }}> 
-        <h2>Katso tästä kaikki kyselymme!</h2>
+        <h2>Katso tästä kaikki kyselymme!</h2> 
+        <ShowChart queries={props} />
           <AgGridReact  
             rowData={props.queries}
             columnDefs={columns}

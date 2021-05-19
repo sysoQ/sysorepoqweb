@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Typography from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar"; 
 import QueriesList from "./components/QueriesList";
 import QuestionsByQuery from "./components/QuestionsByQuery";
 import "./App.css";
 import AnswersByQuery from "./components/AnswersByQuery" 
+
 
 const App = () => {
   const [queries, setQueries] = useState([]); 
@@ -31,10 +32,10 @@ const App = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat' }}>
-            <Typography variant="h5">KyselyAppis</Typography>
+            <Typography variant="h5">KyselyAppis</Typography> 
           </Toolbar>
         </AppBar>
-        <Switch>
+        <Switch> 
           <Route exact path="/">
             <QueriesList queries={queries} />
           </Route>

@@ -61,7 +61,7 @@ const AnswersByQuery = (props) => {
                     Back to frontpage
                   </Button> 
                 </Box>
-              <Container maxWidth="md" style={{ backgroundImage: "url(" + "https://cdn.pixabay.com/photo/2018/06/07/16/38/blueberry-3460421_960_720.jpg" + ")",
+              <Container maxWidth="md" style={{ backgroundImage: "url(" + "https://cdn.pixabay.com/photo/2016/11/22/22/04/float-1850828_960_720.jpg" + ")",
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat' }}>  
