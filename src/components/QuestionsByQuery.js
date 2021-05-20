@@ -85,7 +85,7 @@ const QuestionsByQuery = (props) => {
           <Container maxWidth="md">
             <Box className="card" textAlign="center">
               <Button variant="outlined" color="primary" href="/">
-                Back to frontpage
+                Takaisin etusivulle
               </Button>
             </Box>
             {
