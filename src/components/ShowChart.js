@@ -64,7 +64,7 @@ const ShowChart = ({ queries }) => {
             width={"500px"}
             height={"300px"}
             chartType="BarChart"
-            loader={<div>Loading Chart</div>}
+            loader={<div>Ladataan kuvaa</div>}
             data={getQueryData(results)}
             options={{
               title: "Kyselyt kysymyksittäin",
@@ -81,10 +81,10 @@ const ShowChart = ({ queries }) => {
             rootProps={{ "data-testid": "1" }}
           />
         ) : (
-          <p>Loading..</p>
+          <p>Ladataan..</p>
         )}
         <Button onClick={() => handleClose()} color="primary">
-          Back
+          Sulje
         </Button>
       </Dialog>
     </>
